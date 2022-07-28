@@ -16,6 +16,11 @@ public class AnimeCharacterResource {
         this.characterService = characterService;
     }
 
+    @GetMapping("/{id}")
+    public AnimeCharacter getAnimeCharacterById(@PathVariable int id) {
+        return characterService.getCharacterById(id);
+    }
+
     @GetMapping
     public List<AnimeCharacter> getAllAnimeCharacter() {
         return characterService.getAllCharacters();
@@ -31,8 +36,8 @@ public class AnimeCharacterResource {
         return characterService.deleteCharacterById(id);
     }
 
-    @PostMapping("/update")
-    public boolean updateAnimeCharacter(@RequestBody AnimeCharacter animeCharacter) {
-        return characterService.updateCharacter(animeCharacter);
+    @PostMapping("/update/{id}")
+    public boolean updateAnimeCharacter(@RequestBody AnimeCharacter animeCharacter, @PathVariable("id") int id) {
+        return characterService.updateCharacter(id, animeCharacter);
     }
 }

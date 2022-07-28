@@ -11,7 +11,7 @@ public interface AnimeCharacterService {
     AnimeCharacter getCharacterById(int id);
     List<AnimeCharacter> getAllCharacters();
     boolean saveCharacter(AnimeCharacter character);
-    boolean updateCharacter(AnimeCharacter character);
+    boolean updateCharacter(int id, AnimeCharacter character);
     boolean deleteCharacterById(int id);
 
 }

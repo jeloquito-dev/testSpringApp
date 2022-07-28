@@ -18,7 +18,7 @@ public class AnimeCharacterServiceImpl implements AnimeCharacterService {
 
     @Override
     public AnimeCharacter getCharacterById(int id) {
-        return null;
+        return animeCharacterRepository.findById(id).get();
     }
 
     @Override
@@ -28,17 +28,25 @@ public class AnimeCharacterServiceImpl implements AnimeCharacterService {
 
     @Override
     public boolean saveCharacter(AnimeCharacter character) {
-        this.animeCharacterRepository.save(character);
+        animeCharacterRepository.save(character);
         return true;
     }
 
     @Override
-    public boolean updateCharacter(AnimeCharacter character) {
-        return false;
+    public boolean updateCharacter(int id, AnimeCharacter character) {
+        AnimeCharacter updatedAnimeCharacter = animeCharacterRepository.findById(id).get();
+
+        updatedAnimeCharacter.setName(character.getName());
+        updatedAnimeCharacter.setAnime(character.getAnime());
+
+        animeCharacterRepository.save(updatedAnimeCharacter);
+
+        return true;
     }
 
     @Override
     public boolean deleteCharacterById(int id) {
-        return false;
+        animeCharacterRepository.deleteById(id);
+        return true;
     }
 }
